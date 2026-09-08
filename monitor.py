@@ -16,6 +16,7 @@ import os
 import re
 import sys
 import urllib.request
+from datetime import datetime, timezone
 
 STATE_FILE = "state.json"
 
@@ -24,7 +25,7 @@ STATE_FILE = "state.json"
 # browser. Treat the topic name like a shared secret — anyone who knows
 # it can read your notifications, since public ntfy.sh topics aren't
 # access-controlled.
-NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "krystof-venue-alerts-CHANGE-ME")
+NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "kxtof_forum67_karlin_new")
 
 VENUES = [
     {
@@ -110,6 +111,12 @@ def main() -> None:
             changed = True
 
         state[venue["name"]] = current
+
+    # Always update this, even when nothing changed, so the workflow always
+    # has something to commit. GitHub auto-disables scheduled workflows on
+    # repos that go 60 days without a push -- this keeps the repo "active"
+    # even during a stretch with no new listings.
+    state["_last_checked"] = datetime.now(timezone.utc).isoformat()
 
     save_state(state)
     if not changed:

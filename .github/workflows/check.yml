@@ -2,9 +2,10 @@ name: Check venue listings
 
 on:
   schedule:
-    # Runs once daily at 08:00 UTC (~09:00/10:00 Prague time depending on DST).
-    # Change the cron expression if you want a different time or frequency.
-    - cron: "0 8 * * *"
+    # Runs at the top of every hour. GitHub doesn't guarantee exact timing
+    # for scheduled workflows -- expect runs delayed a few minutes during
+    # busy periods, which doesn't matter for daily-scale content like this.
+    - cron: "0 * * * *"
   workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
 
 permissions:
