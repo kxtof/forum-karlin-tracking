@@ -25,17 +25,36 @@ STATE_FILE = "state.json"
 # browser. Treat the topic name like a shared secret — anyone who knows
 # it can read your notifications, since public ntfy.sh topics aren't
 # access-controlled.
-NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "kxtof_forum67_karlin_new")
+NTFY_TOPIC = os.environ.get("NTFY_TOPIC") or "kxtof_forum67_karlin_new"
 
 VENUES = [
     {
         "name": "Forum Karlín",
         "url": "https://www.forumkarlin.cz/program/",
-        # Matches: href="https://www.forumkarlin.cz/udalost/some-slug"
-        # and grabs the slug plus the event title from the following text.
+        # Matches: <a href="https://www.forumkarlin.cz/udalost/some-slug" ... title="Event Name">
         "link_pattern": re.compile(
-            r'href="https://www\.forumkarlin\.cz/udalost/([a-z0-9\-]+)"[^>]*>\s*([^<]*)</a>'
+            r'href="https://www\.forumkarlin\.cz/udalost/([a-z0-9\-]+)"[^>]*title="([^"]*)"'
         ),
+        "event_url_template": "https://www.forumkarlin.cz/udalost/{slug}",
+    },
+    {
+        "name": "O2 universum",
+        # Same page also lists O2 arena events (separate entry below) --
+        # fetched twice, once per venue, which is one extra request, not
+        # worth optimizing away for a once-an-hour check.
+        "url": "https://www.o2universum.cz/en/events/",
+        "link_pattern": re.compile(
+            r'href="https://www\.o2universum\.cz/en/events/([a-z0-9\-]+)/"[^>]*title="([^"]*)"'
+        ),
+        "event_url_template": "https://www.o2universum.cz/en/events/{slug}/",
+    },
+    {
+        "name": "O2 arena",
+        "url": "https://www.o2universum.cz/en/events/",
+        "link_pattern": re.compile(
+            r'href="https://www\.o2arena\.cz/events/([a-z0-9\-]+)/"[^>]*title="([^"]*)"'
+        ),
+        "event_url_template": "https://www.o2arena.cz/events/{slug}/",
     },
 ]
 
@@ -102,7 +121,7 @@ def main() -> None:
 
         for slug in new_slugs:
             title = current[slug]
-            event_url = venue["url"].rsplit("/program", 1)[0] + f"/udalost/{slug}"
+            event_url = venue["event_url_template"].format(slug=slug)
             print(f"NEW: {venue['name']} — {title} ({event_url})")
             notify(
                 title=f"New listing: {venue['name']}",
