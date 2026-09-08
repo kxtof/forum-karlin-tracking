@@ -5,7 +5,7 @@ on:
     # Runs at the top of every hour. GitHub doesn't guarantee exact timing
     # for scheduled workflows -- expect runs delayed a few minutes during
     # busy periods, which doesn't matter for daily-scale content like this.
-    - cron: "0 * * * *"
+    - cron: "41 * * * *"
   workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
 
 permissions:
