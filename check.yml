@@ -1,0 +1,30 @@
+name: Check venue listings
+
+on:
+  schedule:
+    # Runs once daily at 08:00 UTC (~09:00/10:00 Prague time depending on DST).
+    # Change the cron expression if you want a different time or frequency.
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write  # needed so the workflow can commit the updated state.json
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run monitor
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python3 monitor.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "venue-monitor-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add state.json
+          git diff --cached --quiet || git commit -m "Update state"
+          git push
