@@ -1,8 +1,11 @@
 name: Check Dune screenings
 
 on:
-  schedule:
-    - cron: "28 * * * *"
+  # No schedule: block -- GitHub's own scheduler is too unreliable for
+  # minute-level freshness (documented as best-effort, delayed/dropped
+  # under load). A Cloudflare Worker Cron Trigger calls this via the API
+  # instead (see cron-worker/), which goes through the normal dispatch
+  # queue rather than the deprioritized schedule queue.
   workflow_dispatch: {}
 
 permissions:

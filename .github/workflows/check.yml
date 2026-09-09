@@ -1,12 +1,9 @@
 name: Check venue listings
 
 on:
-  schedule:
-    # Runs at the top of every hour. GitHub doesn't guarantee exact timing
-    # for scheduled workflows -- expect runs delayed a few minutes during
-    # busy periods, which doesn't matter for daily-scale content like this.
-    - cron: "41 * * * *"
-  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
+  # No schedule: block -- see dune_check.yml for why. This one's driven by
+  # the same Cloudflare Worker's every-5-minutes Cron Trigger instead.
+  workflow_dispatch: {}  # also lets you trigger a run manually from the Actions tab
 
 permissions:
   contents: write  # needed so the workflow can commit the updated state.json
@@ -36,14 +33,5 @@ jobs:
             exit 0
           fi
           git commit -m "Update state"
-          # The remote may have moved since checkout (e.g. you pushed a
-          # code change while this ran). Rebase onto the latest and retry
-          # the push a couple of times before giving up.
-          for i in 1 2 3; do
-            git fetch origin main
-            git rebase origin/main && git push && exit 0
-            echo "Push attempt $i failed, retrying..."
-            sleep 5
-          done
-          echo "::error::Failed to push after 3 attempts"
-          exit 1
+          git pull --rebase origin main
+          git push
