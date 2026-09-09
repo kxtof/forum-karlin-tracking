@@ -24,8 +24,8 @@ const REPO = "forum-karlin-tracking"; // change if your repo is named differentl
 const REF = "main";
 
 const CRON_TO_WORKFLOW = {
-  "* * * * *": "dune_check.yml",
-  "*/5 * * * *": "check.yml",
+  "*/3 * * * *": "dune_check.yml",
+  "0 * * * *": "check.yml",
 };
 
 async function dispatchWorkflow(workflowFile, token) {
