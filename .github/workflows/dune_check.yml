@@ -1,0 +1,38 @@
+name: Check Dune screenings
+
+on:
+  schedule:
+    - cron: "28 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dune-monitor-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Dune monitor
+        env:
+          NTFY_TOPIC_DUNE: ${{ secrets.NTFY_TOPIC_DUNE }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python3 dune_monitor.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "dune-monitor-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add dune_state.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "Update Dune state"
+          git pull --rebase origin main
+          git push
