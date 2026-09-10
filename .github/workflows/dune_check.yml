@@ -3,9 +3,10 @@ name: Check Dune screenings
 on:
   # No schedule: block -- GitHub's own scheduler is too unreliable for
   # minute-level freshness (documented as best-effort, delayed/dropped
-  # under load). A Cloudflare Worker Cron Trigger calls this via the API
-  # instead (see cron-worker/), which goes through the normal dispatch
-  # queue rather than the deprioritized schedule queue.
+  # under load). cron-job.org hits this workflow's dispatch endpoint
+  # externally instead (via the Cloudflare Worker in cron-worker/), which
+  # goes through the normal dispatch queue rather than the deprioritized
+  # schedule queue.
   workflow_dispatch: {}
 
 permissions:
@@ -37,5 +38,6 @@ jobs:
             exit 0
           fi
           git commit -m "Update Dune state"
-          git pull --rebase origin main
+          git fetch origin main
+          git merge origin/main -X ours --no-edit
           git push

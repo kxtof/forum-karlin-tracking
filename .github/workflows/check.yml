@@ -2,7 +2,7 @@ name: Check venue listings
 
 on:
   # No schedule: block -- see dune_check.yml for why. This one's driven by
-  # the same Cloudflare Worker's every-5-minutes Cron Trigger instead.
+  # cron-job.org hitting this workflow's dispatch endpoint hourly instead.
   workflow_dispatch: {}  # also lets you trigger a run manually from the Actions tab
 
 permissions:
@@ -33,5 +33,6 @@ jobs:
             exit 0
           fi
           git commit -m "Update state"
-          git pull --rebase origin main
+          git fetch origin main
+          git merge origin/main -X ours --no-edit
           git push

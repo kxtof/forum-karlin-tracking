@@ -2,5 +2,8 @@ name = "venue-monitor-cron"
 main = "worker.js"
 compatibility_date = "2026-01-01"
 
-[triggers]
-crons = ["*/3 * * * *", "0 * * * *"]
+# No [triggers] block: Cloudflare's native Cron Trigger dispatch has proven
+# unreliable (intermittently not firing, per widely-reported 2026 platform
+# issues) -- scheduling is now handled externally by cron-job.org hitting
+# this Worker's fetch() endpoint instead. Keeping both active risked
+# occasional double-triggers landing close together.

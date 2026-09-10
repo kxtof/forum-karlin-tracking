@@ -20,11 +20,11 @@
 **/
 
 const OWNER = "kxtof";
-const REPO = "forum-karlin-tracking"; // change if your repo is named differently
+const REPO = "forum-karlin-tracking";
 const REF = "main";
 
 const CRON_TO_WORKFLOW = {
-  "*/3 * * * *": "dune_check.yml",
+  "1 * * * *": "dune_check.yml",
   "0 * * * *": "check.yml",
 };
 
