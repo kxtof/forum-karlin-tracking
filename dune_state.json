@@ -1,5 +1,5 @@
 {
-  "_last_checked": "2026-10-19T21:52:27.895630+00:00",
+  "_last_checked": "2026-10-19T21:54:31.320573+00:00",
   "events": {
     "248952": {
       "auditorium": "IMAX VOLVO",
@@ -19,6 +19,125 @@
       "auditorium": "IMAX VOLVO",
       "booking": "https://tickets.cinemacity.cz/order/249034",
       "datetime": "2026-12-15T20:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267892": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267892",
+      "datetime": "2026-12-16T00:01:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267900": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267900",
+      "datetime": "2026-12-16T21:00:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267902": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267902",
+      "datetime": "2026-12-17T14:00:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267904": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267904",
+      "datetime": "2026-12-17T17:20:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267905": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267905",
+      "datetime": "2026-12-17T20:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267906": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267906",
+      "datetime": "2026-12-18T10:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267908": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267908",
+      "datetime": "2026-12-18T14:00:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267909": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267909",
+      "datetime": "2026-12-18T17:20:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267910": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267910",
+      "datetime": "2026-12-18T20:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267911": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267911",
+      "datetime": "2026-12-19T10:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267913": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267913",
+      "datetime": "2026-12-19T14:00:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267914": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267914",
+      "datetime": "2026-12-19T17:20:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267915": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267915",
+      "datetime": "2026-12-19T20:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267916": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267916",
+      "datetime": "2026-12-20T10:40:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267922": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267922",
+      "datetime": "2026-12-20T14:00:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267926": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267926",
+      "datetime": "2026-12-20T17:20:00",
+      "film": "Duna: část třetí",
+      "soldOut": false
+    },
+    "267928": {
+      "auditorium": "IMAX VOLVO",
+      "booking": "https://tickets.cinemacity.cz/order/267928",
+      "datetime": "2026-12-20T20:40:00",
       "film": "Duna: část třetí",
       "soldOut": false
     }
